@@ -14,10 +14,14 @@ Note that the app is a beta version on purpose.
 ## Tasks
 
 - Find as many bugs as you can in the time tracker app and report them;
-- Write tests for all the bugs previously discovered, list and explain them. There are no requirements on the type of tests, it is up to you to decide what would be appropriate;
 - Define and document the acceptance criteria and testing strategy for the features described below:
   - We want to allow users to edit and delete existing sessions. Regarding the editing functionality they should be able to change an existing session name and duration.
   - We want to allow users to search for sessions in the list. They should be able to search by name or duration.
+- Write some end-to-end tests for all the bugs previously discovered, list and explain them;
+- Write some tests for the API endpoints (feel free to pick any tool/framework for this);
+- Bonus points if you manage to enahnce tests with some reporting capabilities;
+- Configure a github actions pipeline to run the tests;
+- Can you think of any non-functional tests with which you could enhance the QA coverage? If so, describe them (and document it). Bonus points if you manage to implement something;
 
 ### Documenting your submission
 
