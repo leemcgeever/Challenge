@@ -19,7 +19,7 @@ Note that the app is a beta version on purpose.
   - We want to allow users to search for sessions in the list. They should be able to search by name or duration.
 - Write end-to-end tests for all the bugs previously discovered, list and explain them;
 - Write tests for the API endpoints (feel free to pick any tool/framework for this);
-- Bonus points if you manage to enahnce tests with some reporting capabilities;
+- Bonus points if you manage to enhance tests with some reporting capabilities;
 - Configure a github actions pipeline to run the tests;
 - Can you think of any non-functional tests with which you could enhance the automation coverage? If so, describe them (and document it). Bonus points if you manage to implement something;
 
