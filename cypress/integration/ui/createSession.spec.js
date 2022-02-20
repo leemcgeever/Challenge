@@ -30,7 +30,7 @@ describe('Create a new session using the UI', () => {
     // and we can then remove this test from the test suite
     it('Enters a title that contains only spaces', () => {
         cy.enterTitle("          ")    
-        cy.createNewTimerRecord(2000) 
+        cy.createNewTimerRecord(1000) 
         //cy.save() // Commented out until Bug #1 is resolved
     });
 
@@ -38,11 +38,18 @@ describe('Create a new session using the UI', () => {
     // but should we reduce the character limit the test will fail)
     it('Enters a title that contains over 50 characters ', () => {
         cy.enterTitle("12345678901234567890123456789012345678901234567890A")    
-        cy.createNewTimerRecord(3000) 
+        cy.createNewTimerRecord(1000) 
         //cy.save() // Commented out until Bug #1 is resolved
     });
 
-    
+    // Test to verify the reset button returns the timer back to Zero
+    it('Verify the reset button sets the timer back to zero ', () => {
+        cy.enterTitle("TimerTest")    
+        cy.createNewTimerRecord(1000) 
+        cy.resetTimerValues()
+        //cy.save() // Commented out until Bug #1 is resolved
+    });
+
     // Test to create a record via the API and verify it appears in the sessions page
     // NOTE:  Created this test as the save currently fails.  Just to show E2E test working
     it('create a new saved session and verify it in the sessions page ', () => {

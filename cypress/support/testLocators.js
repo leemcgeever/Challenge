@@ -8,6 +8,7 @@ export const elementLocators = {
     SESSION_TITLE: '[data-cy="cardTitle"]',
     START_TIMER: '[data-cy="btnStartTimer"]',
     STOP_TIMER: '[data-cy="btnStopTimer"]',
+    TIMER_VALUE: '[data-cy="timerValue"]'
 }
 
 export const pageURL = {

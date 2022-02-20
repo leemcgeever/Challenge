@@ -13,10 +13,10 @@ Cypress.Commands.add('createNewTimerRecord', (timeInMs) => {
 })
 
 //Reset the timer
-// Cypress.Commands.add('resetTimer', () => {
-//     cy.get(elementLocators.RESET_TIMER).click()
-//     // TODO - now check that the counter is reset
-// })
+Cypress.Commands.add('resetTimerValues', () => {
+    cy.get(elementLocators.RESET_TIMER).click()
+    cy.get(elementLocators.TIMER_VALUE).should('have.text', '00:00:00')
+})
 
 // Save the record and deal with the pop-up message
 Cypress.Commands.add('save', () => {
