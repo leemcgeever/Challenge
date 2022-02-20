@@ -7,7 +7,8 @@
   "dependencies": {
   },
   "scripts": {
-  "cypress:open": "node_modules/.bin/cypress open",
-  "cypress:run api": "node_modules/.bin/cypress run -s cypress/integration/api/verifyEndpoints.spec.js"
+    "cypress:open": "node_modules/.bin/cypress open",
+    "cypress:run_api": "node_modules/.bin/cypress run -s cypress/integration/api/verifyEndpoints.spec.js",
+    "cypress:run_ui": "node_modules/.bin/cypress run -s cypress/integration/ui/createSession.spec.js"
   }
 }

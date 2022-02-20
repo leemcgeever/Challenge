@@ -1,4 +1,4 @@
-import { elementLocators, pageText, pageURL } from '../support/testLocators'
+import { elementLocators, pageText, pageURL } from './testLocators'
 
 // Add a title.  allow user to enter valid and invalid data
 Cypress.Commands.add('enterTitle', (title) => {
@@ -13,10 +13,10 @@ Cypress.Commands.add('createNewTimerRecord', (timeInMs) => {
 })
 
 //Reset the timer
-Cypress.Commands.add('resetTimer', () => {
-    cy.get(elementLocators.RESET_TIMER).click()
-    // TODO - now check that the counter is reset
-})
+// Cypress.Commands.add('resetTimer', () => {
+//     cy.get(elementLocators.RESET_TIMER).click()
+//     // TODO - now check that the counter is reset
+// })
 
 // Save the record and deal with the pop-up message
 Cypress.Commands.add('save', () => {
@@ -34,7 +34,6 @@ Cypress.Commands.add('createUserViaApi', () => {
         }).then(
     (response) => {
             expect(response.status).to.eq(200);
-            expect(response.body).to.be.greaterThan(0);
             expect(response.duration).to.be.lessThan(200)
         }
     )

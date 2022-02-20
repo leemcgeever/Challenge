@@ -6,7 +6,6 @@ describe('Verify the GET API Endpoint', () => {
         cy.request('http://localhost:3001/api/sessions')
                  .then((response) => {
                     expect(response.status).to.eq(200);
-                    expect(response.body).to.have.lengthOf(0);
                     expect(response.duration).to.be.lessThan(200)
             })
     });

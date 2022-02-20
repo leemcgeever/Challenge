@@ -48,6 +48,6 @@ describe('Create a new session using the UI', () => {
     it('create a new saved session and verify it in the sessions page ', () => {
         cy.createUserViaApi()
         cy.visit('/sessions')
-        cy.get(elementLocators.SESSION_TITLE).should('have.text', 'TestUser')
+        cy.get(elementLocators.SESSION_TITLE).last().should('have.text', 'TestUser')
     });
 })

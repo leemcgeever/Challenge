@@ -100,9 +100,10 @@ This is a good practice as should someone refactor and change the actual element
 ------------------------------------------------------------------------------------------------------------------------
 
 **Running the automated tests locally**
+* cd into the `cypress` directory
 * To launch the cypress GUI use command `npm run cypress:open`
-You can then select which spec file to run
-* To run the tests in the CLI (headless mode) use command `npm run cypress:run`
+* To run the API tests in the CLI (headless mode) use command `npm run cypress:run api`
+* To run the API tests in the CLI (headless mode) use command `npm run cypress:run ui`
 
 **Automated Tests**
 Cypress Tests written `ui\createSeesion.spec.js` for the previously found bugs some of these should form part of a end to end test suite run as part of an CI/CD build pipeline (I would probably remove the field validation tests after fixing as they are low priority tests)
@@ -143,14 +144,17 @@ I have added the test to the `api\VerifyEndpoints.spec.js` file also but they sh
 ------------------------------------------------------------------------------------------------------------------------
 
 **GitActions**
-I will be honest and say I haven't used Github Actions previously, so felt it would take too long to learn and implement a solution I would be happy with. I would need to take into consideration the docker containers, which again is not something I have used (I understand how they work but it would take some time to understand the app to fully implement a good solution).  
+I will be honest and say I haven't used Github Actions previously, so felt it would take too long to learn and implement a solution I would be happy with. I would need to take into consideration the docker containers, which again is not something I have used recently, always having static test environments to work from in my last 3 companies (I understand how they work but it would take some time to understand the app to fully implement a good solution).  
 
 I have experience of Jenkins and also running a pipeline utilising octopus (I worked with the DevOps developer at Floww to learn this so I could own both manual and automated deploys to the static test environments)
 I feel this would be something I would like to learn and feel I could be up-to speed quite quickly once I was walked through.
 ------------------------------------------------------------------------------------------------------------------------
 
 **Non-functional**
-Cypress framework isn't set up to run as a non-functional test framework.  I would create a separate solution to run the OWASP ZAP (Zed Attack Proxy) solution. `https://www.zaproxy.org/`  It can be added as a github action and run serveral different types of scanss dependant on where in the the overall development deploy process they are needed.
+***Basic Performance test***
+For the API tests I have added a simple check to verify that the responses are returned in less than 200 milliseconds.  This is a basic non-functional test that should flag if the endpoints start running slow (NOTE: 200ms was a purely arbitrarily chosen value)
+
+For more NFR I would say that the Cypress framework isn't designed to run as a non-functional test framework (and NFR's should run separately as they have a different focus as well as scheduled running frequency).  I would create a separate solution to run the OWASP ZAP (Zed Attack Proxy) solution. `https://www.zaproxy.org/`  It can be added as a github action and run serveral different types of scanss dependant on where in the the overall development deploy process they are needed.
 
 ------------------------------------------------------------------------------------------------------------------------
 
