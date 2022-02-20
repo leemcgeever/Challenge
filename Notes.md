@@ -105,21 +105,24 @@ This is a good practice as should someone refactor and change the actual element
 * To run the API tests in the CLI (headless mode) use command `npm run cypress:run api`
 * To run the API tests in the CLI (headless mode) use command `npm run cypress:run ui`
 
-**Automated Tests**
+**Automated Tests Details**
 Cypress Tests written `ui\createSeesion.spec.js` for the previously found bugs some of these should form part of a end to end test suite run as part of an CI/CD build pipeline (I would probably remove the field validation tests after fixing as they are low priority tests)
 
 ***Create a new session and save it***  
-This is the standard test to verify the app works as intended. It creates a new user record and saves the record.  NOTE: This test currently fails due to Bug #1.
+This is the standard test to verify the app works as intended. It creates a new user record and saves the record.  NOTE: This test currently fails due to Bug #1 so I have commented out the save to make the test pass (in reality I would leave normally comment the whole test out until the bug was fixed - referencing the spec file to the bug to ensure it is uncommented once fixed)
 
 _The following tests are from field validation testing that flagged 2 bugs around data input improvements in the title field_
 ***Create a new session with a title containing only spaces***  
-This test inputs only spaces in the title and saves it.  The record is saved but we should probably not allow this as it's bad practice to allows only spaces.  NOTE: This test currently fails due to Bug #1.
+This test inputs only spaces in the title and saves it.  The record is saved but we should probably not allow this as it's bad practice to allows only spaces.  NOTE: This test currently fails due to Bug #1 so I have commented out the save to make the test pass.
 ***Create a new session with a title containing only spaces***  
-This test inputs 51 characters in the title and saves it.  Long titles can cause display issues and look bad in the UI so I would suggest reducing the limit. I raise these types of issues as a discussion point and if not agreed by the team as an issue it can be closed.  I'd rather raise an issue than not raise it.  I can lead to quality improvemements for the user  NOTE: This test currently fails due to Bug #1.
+This test inputs 51 characters in the title and saves it.  Long titles can cause display issues and look bad in the UI so I would suggest reducing the limit. I raise these types of issues as a discussion point and if not agreed by the team as an issue it can be closed.  I'd rather raise an issue than not raise it.  I can lead to quality improvemements for the user  NOTE: This test currently fails due to Bug #1s o I have commented out the save to make the test pass
+
+***Verify the Reset button returns the timer back to 00:00:00***  
+This test inputs a name, starts the timer, waits for 1 second, stops the timer and then presses reset.  There is a check to verift the timer has a value of 00:00:00
 
 _End to End Test to verify that a record can be created and viewed by the user_
 ***View a saved session***
-Uses the API to generate a saved session and then the UI to verify the session is retuned to the user
+Uses the API to generate a saved session and then the UI to verify the session is retuned to the user, I check the last card in the list for the expected title.
 ------------------------------------------------------------------------------------------------------------------------
 
 **API Endpoints testing in Cypress**
@@ -127,19 +130,27 @@ Uses the API to generate a saved session and then the UI to verify the session i
 I have created a test that runs before on a clean environment (before any data has been created).  It checks for:
 * 200 Status Code
 * Response Body length is 0
+* Response time is less than 200 milliseconds
 
 ***POST Request***
 I have created a helper command in support/command.js that creates a new record using the POST endpoint.  I have used this in the UI tests to bypass the app (quicker and best practice) to create a new timer record and verify that
 * 200 Status Code is received
 * Response Body is greater than 0 length
+* Response time is less than 200 milliseconds
 
-I have added the test to the `api\VerifyEndpoints.spec.js` file also but they should be run separately as they checks can fail as data isn't cleared between runs (this would be a TO-DO in the real automation environment)
 
-(NOTE:  Additional improvements would be to verify the body contents)
+I have also created a Postman Collection and Environment.  
+These files are in the `postman_artefacts` folder.
+***To use:***
+* Import the collection
+* Import the environment
+* Ensure a new version of the server is running (current implementation assumes no data prior to executing the scripts)
+* Select the top level folder and in the right hand side select the `Run button`
+(You made need the Postman Agent installed and running to test on localost)
 ------------------------------------------------------------------------------------------------------------------------
 
 **Reporting**
-
+No additional reporting added. sorry
 
 ------------------------------------------------------------------------------------------------------------------------
 
